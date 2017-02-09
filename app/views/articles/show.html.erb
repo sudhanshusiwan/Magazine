@@ -1,0 +1,27 @@
+<div class="container">
+  <h2> <%= @article.name %> </h2>
+
+  <div>
+    <br>
+    <strong>Owner: </strong><%= @article.owner.name %>
+    <br>
+    <strong>Tags: </strong><%= @tags_and_subtags_hash[:tags] %>
+    <br>
+    <strong>Sub Tags: </strong><%= @tags_and_subtags_hash[:sub_tags] %>
+    <br>
+  </div>
+
+  <div>
+    <br>
+    <%= @article.description %>
+    <br>
+  </div>
+
+  <div>
+    <br>
+    <% if current_user == @article.owner %>
+        <%= link_to 'Edit', edit_article_path(@article) %> |
+    <% end %>
+    <%= link_to 'Back', articles_path %>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<%= form_for(@article) do |f| %>
+  <% if @article.errors.any? %>
+    <div>
+      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+      <% @article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.label :tags %><br>
+    <%= f.select :tag_ids, Tag.all.collect {|tag| [tag.tag_string, tag.id]}, {}, :multiple => true %>
+  </div>
+  <div>
+    <%= f.label :sub_tags %><br>
+    <%= f.select :sub_tag_ids, SubTag.all.collect {|sub_tag| [sub_tag.sub_tag_string, sub_tag.id]}, {}, :multiple => true %>
+  </div>
+  <div>
+    <%= f.submit :class => 'btn btn-primary btn-sm' %>
+  </div>
+<% end %>
